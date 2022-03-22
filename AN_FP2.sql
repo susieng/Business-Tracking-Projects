@@ -130,7 +130,7 @@ CREATE TABLE IF NOT EXISTS `AN_FP2`.`TRACKING`
 
 insert into customer (LastName, FirstName, Email, Address, District, City, Zip, Phone)
 values ('Nguyen', 'LanAnh', 'anhntl@email.com', '47 QuangTrung St', 'HoanKiem', 'Hanoi', 10000, 1906698888),
-	('Le', 'Huong', 'lehuong@email.com', '48 QuangTrung St', 'HoanKiem', 'Hanoi', 10000, 1912096060),
+       ('Le', 'Huong', 'lehuong@email.com', '48 QuangTrung St', 'HoanKiem', 'Hanoi', 10000, 1912096060),
        ('Dao', 'Quynh', 'quynhdao@email.com', 'The Manor W2003 Metri St', 'Tuliem', 'Hanoi', 10000, 1259996868),
        ('Phan', 'Huyen', 'hphan@email.com', 'The Manor E1904 Metri St', 'Tuliem', 'Hanoi', 10000, 1903222686),
        ('Bui', 'Nga', 'ngabui@email.com', '85 Vu-Trongphung St', 'ThanhXuan', 'Hanoi', 10000, 1937556868),
