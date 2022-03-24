@@ -1,8 +1,5 @@
--- Anh Nguyen / MSIS 618 Final Project
+-- CREATE DATABASE
 
--- -----------------------------------------------------
--- Schema AN_FP2
--- -----------------------------------------------------
 drop database an_fp2;
 CREATE SCHEMA IF NOT EXISTS `AN_FP2`;
 USE `AN_FP2` ;
@@ -124,11 +121,7 @@ CREATE TABLE IF NOT EXISTS `AN_FP2`.`TRACKING`
 
 
 
-
-
-
-
-insert into customer (LastName, FirstName, Email, Address, District, City, Zip, Phone)
+insert into `customer` (LastName, FirstName, Email, Address, District, City, Zip, Phone)
 values ('Nguyen', 'LanAnh', 'anhntl@email.com', '47 QuangTrung St', 'HoanKiem', 'Hanoi', 10000, 1906698888),
        ('Le', 'Huong', 'lehuong@email.com', '48 QuangTrung St', 'HoanKiem', 'Hanoi', 10000, 1912096060),
        ('Dao', 'Quynh', 'quynhdao@email.com', 'The Manor W2003 Metri St', 'Tuliem', 'Hanoi', 10000, 1259996868),
@@ -181,3 +174,63 @@ values (6, '2018-03-02', 12.04, 0, 14.40, 26.44),
        (4, '2018-03-14', 8.50, 0, 9.40, 17.9),
        (9, '2018-03-15', 6.36, 0, 20.70, 27.06);
        
+ 
+ 
+ -- Frequently used queries
+
+# 1. Shows CustomerID, TotalPrice, TotalFee, the sum of TotalPrice and TotalFee as TotalCost in BoxID 1:
+SELECT A.CustomerID, B.TotalPrice, C.TotalFee, b.TotalPrice + c.TotalFee as TotalCost
+FROM customer AS A 
+JOIN `web order` AS B JOIN `order fee` AS C
+ON a.customerid = b.customerid AND a.customerid = c.customerid
+WHERE b.`VN SHIPMENT_BoxID`='1';
+
+            
+# 2. Displays all tracking number(s) and date received of order(s) that contain ItemType ‘bag’:
+SELECT tracking, DateReceive
+FROM tracking
+WHERE OrderNumber
+IN (SELECT  OrderNumber
+	  FROM `web order` 
+    WHERE `web order`.ItemType= 'bag');
+    
+
+# 3. Lists item(s) sent to Tuliem District area and its arrival date in Vietnam:
+SELECT DISTINCT itemname, ArrivalDate
+FROM `web order` 
+JOIN `vn shipment`
+ON `web order`.`VN SHIPMENT_BoxID` = `VN SHIPMENT`.boxID
+WHERE CustomerID 
+IN (SELECT customerid 
+	  FROM customer 
+    WHERE District = 'tuliem');
+    
+
+# 4. Shows website and order number that have clothes arrived to Vietnam before April 8th:
+SELECT WebName, OrderNumber
+FROM `web order` AS a 
+JOIN `vn shipment` AS b
+ON a.`vn shipment_boxid` = b.boxid
+WHERE itemtype = 'clothing'
+AND ArrivalDate < '2018-04-08';
+
+
+# 5. A total spends of each web order in descending order:
+SELECT DISTINCT Webname, sum(TotalPrice) AS TotalSpend
+FROM `web order`
+GROUP BY webname 
+ORDER BY TotalSpend DESC;
+
+
+# 6. Shows customer’s first name and phone number, who have order fees greater than $10.00, sorting from highest to lowest:
+SELECT a.Firstname, a.Email, a.Phone, sum(orderFee) as OrderFeeSum
+FROM customer AS a 
+JOIN `order fee` AS b
+ON a.customerid = b.customerid
+WHERE orderFee > 5
+GROUP BY email
+ORDER BY OrderFeeSum DESC;
+
+      
+
+      
