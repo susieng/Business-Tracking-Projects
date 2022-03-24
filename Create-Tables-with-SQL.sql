@@ -179,7 +179,7 @@ values (6, '2018-03-02', 12.04, 0, 14.40, 26.44),
  -- Frequently used queries
 
 # 1. Shows CustomerID, TotalPrice, TotalFee, the sum of TotalPrice and TotalFee as TotalCost in BoxID 1:
-SELECT A.CustomerID, B.TotalPrice, C.TotalFee, b.TotalPrice + c.TotalFee as TotalCost
+SELECT A.CustomerID, B.TotalPrice, C.TotalFee, b.TotalPrice + c.TotalFee AS TotalCost
 FROM customer AS A 
 JOIN `web order` AS B JOIN `order fee` AS C
 ON a.customerid = b.customerid AND a.customerid = c.customerid
@@ -191,8 +191,8 @@ SELECT tracking, DateReceive
 FROM tracking
 WHERE OrderNumber
 IN (SELECT  OrderNumber
-	  FROM `web order` 
-    WHERE `web order`.ItemType= 'bag');
+    FROM `web order` 
+    WHERE `web order`.ItemType = 'bag');
     
 
 # 3. Lists item(s) sent to Tuliem District area and its arrival date in Vietnam:
@@ -202,7 +202,7 @@ JOIN `vn shipment`
 ON `web order`.`VN SHIPMENT_BoxID` = `VN SHIPMENT`.boxID
 WHERE CustomerID 
 IN (SELECT customerid 
-	  FROM customer 
+    FROM customer 
     WHERE District = 'tuliem');
     
 
