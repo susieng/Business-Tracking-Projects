@@ -21,7 +21,7 @@ library(tidyverse)
 ## Importing data set
 Here we will go through a series of visualizations
 ```{r}
-o <- read_csv('C:/Users/susie/OneDrive/Documents/Orders.csv')
+o <- read_csv('Orders.csv')
 
 head(o)
 str(o)
