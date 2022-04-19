@@ -2,9 +2,7 @@
 title: "Business Tracking"
 author: "Susie Nguyen"
 date: '2022-04-19'
-output:
-  word_document: default
-  html_document: default
+output:  html_document
 ---
 
 I analyzed my small business transactions to look for long-term trends on outgoing expenses by using R. My sample data set can be obtained at [my GitHub Repository](https://github.com/susieng/Business-Tracking-Projects).
