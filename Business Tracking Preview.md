@@ -1,5 +1,5 @@
 # Business Tracking Preview
-VlOOKUP and some data cleaning formulas as well as Data Validation to create a drop-down list
+VLOOKUP and some data cleaning formulas as well as Data Validation to create a drop-down list
 ![Screenshot_2](https://user-images.githubusercontent.com/102008541/159830499-bcefdae3-dbcd-41a9-a7a1-64c4f2dbc3b5.png)
 
 
